@@ -1,5 +1,14 @@
 require "fma_realestate/version"
 
 module FmaRealestate
-  # Your code goes here...
+
+  def self.configure
+    yield self
+    true
+  end
+
+  class << self
+    attr_accessor :access_token
+  end
+
 end
