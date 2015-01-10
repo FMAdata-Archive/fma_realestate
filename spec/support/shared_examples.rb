@@ -25,3 +25,19 @@ shared_examples "handles unexpected response" do
     expect {action}.to raise_error(FmaRealestate::HTTPError)
   end
 end
+
+shared_examples "handles error suppression" do
+  it 'suppresses request error' do
+    connection = double("connection")
+    allow(connection).to receive(:request) { raise FmaRealestate::RequestError }
+    authenticated_client.instance_variable_set(:@connection, connection)
+    expect {action}.to_not raise_error
+  end
+
+  it "doesn't suppress non request errors" do
+    connection = double("connection")
+    allow(connection).to receive(:request) { raise StandardError }
+    authenticated_client.instance_variable_set(:@connection, connection)
+    expect {action}.to raise_error
+  end
+end

@@ -9,18 +9,8 @@ describe FmaRealestate::PublicRecord do
     context "with :raise_errors => false" do
       let(:authenticated_client) { described_class.new(:access_token => 'test', :raise_errors => false) }
 
-      it 'suppresses request error' do
-        connection = double("connection")
-        allow(connection).to receive(:request) { raise FmaRealestate::RequestError }
-        authenticated_client.instance_variable_set(:@connection, connection)
-        expect {authenticated_client.search_by_address()}.to_not raise_error
-      end
-
-      it "doesn't suppress non request errors" do
-        connection = double("connection")
-        allow(connection).to receive(:request) { raise StandardError }
-        authenticated_client.instance_variable_set(:@connection, connection)
-        expect {authenticated_client.search_by_address()}.to raise_error
+      it_behaves_like "handles error suppression" do
+        let(:action) { authenticated_client.search_by_address() }
       end
     end
 
