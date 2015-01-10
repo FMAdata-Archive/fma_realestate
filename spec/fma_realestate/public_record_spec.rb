@@ -15,14 +15,8 @@ describe FmaRealestate::PublicRecord do
     end
 
     context "with :raise_errors => true" do
-      let(:headers) { { 'Authorization' => "Token token=test" } }
 
       it_behaves_like "requires valid authentication" do
-        let(:action) { authenticated_client.search_by_address() }
-      end
-
-      it_behaves_like "requires valid authentication" do
-        let(:headers) { {} }
         let(:action) { anonymous_client.search_by_address() }
       end
 
