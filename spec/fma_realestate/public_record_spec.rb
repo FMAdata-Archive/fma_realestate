@@ -136,4 +136,49 @@ describe FmaRealestate::PublicRecord do
       end
     end
   end
+
+  describe "#search_by_global" do
+    context "with :raise_errors => false" do
+      let(:authenticated_client) { described_class.new(:access_token => 'test', :raise_errors => false) }
+
+      it_behaves_like "handles error suppression" do
+        let(:action) { authenticated_client.search_by_global }
+      end
+    end
+
+    context "with :raise_errors => true" do
+
+      it_behaves_like "requires valid authentication" do
+        let(:action) { anonymous_client.search_by_global }
+      end
+
+      it_behaves_like "handles 404 response" do
+        let(:action) { authenticated_client.search_by_global }
+      end
+
+      it_behaves_like "handles 400 response" do
+        let(:action) { authenticated_client.search_by_global }
+      end
+
+      it_behaves_like "handles 400 response" do
+        let(:action) { authenticated_client.search_by_global }
+      end
+    end
+
+    context "with valid access_token" do
+      let(:fixture) { request_fixture('search_by_global') }
+
+      it "should get response" do
+        Excon.stub({ :method => :get, :path => '/api/data_quick_files/search_by_global', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
+        params = {:q => "1325 Pearl Street"}
+        response = authenticated_client.search_by_global(params)
+        expect(response["count"]).to be_a Integer
+        expect(response["results"]).to be_a Array
+        expect(response["results"].count).to eq(20)
+        expect(response["results"].first).to be_a Hash
+        expect(response["results"][0]["result"]).to be_a Hash
+        expect(response["results"][0]["weight"]).to be_a Integer
+      end
+    end
+  end
 end
