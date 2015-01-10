@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe FmaRealestate::PublicRecord do
-  let(:path) { '/api/data_quick_files/search_by_address' }
   let(:authenticated_client) { described_class.new(:access_token => 'test', :raise_errors => true) }
   let(:anonymous_client) { described_class.new(:raise_errors => true) }
 
