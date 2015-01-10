@@ -47,29 +47,32 @@ module FmaRealestate
         packet[:headers].merge!('Authorization' => "Token token=#{@access_token}")
       end
 
-      error_handler do
-        response = @connection.request(packet)
-        ::JSON.load(response.body)
+      response = request_error_handler do
+        @connection.request(packet)
       end
-    rescue Excon::Errors::NotFound => exception
-      raise(ResourceNotFound, "Error: #{exception.message}")
-    rescue Excon::Errors::BadRequest => exception
-      raise(BadRequest, "Error: #{exception.message}")
-    rescue Excon::Errors::Unauthorized => exception
-      raise(AuthenticationError, "Error: #{exception.message}")
-    rescue Excon::Errors::Error => exception
-      # Catch all others errors. Samples:
-      #
-      # <Excon::Errors::SocketError: Connection refused - connect(2) (Errno::ECONNREFUSED)>
-      # <Excon::Errors::InternalServerError: Expected([200, 204, 404]) <=> Actual(500 InternalServerError)>
-      # <Excon::Errors::Timeout: read timeout reached>
-      # <Excon::Errors::BadGateway: Expected([200]) <=> Actual(502 Bad Gateway)>
-      raise(HTTPError, "Error: #{exception.message}")
+
+      response ? ::JSON.load(response.body) : false
     end
 
-    def error_handler(&blk)
-      yield blk if block_given?
-    rescue
+    def request_error_handler(&blk)
+      begin
+        yield blk if block_given?
+      rescue Excon::Errors::NotFound => exception
+        raise(ResourceNotFound, "Error: #{exception.message}")
+      rescue Excon::Errors::BadRequest => exception
+        raise(BadRequest, "Error: #{exception.message}")
+      rescue Excon::Errors::Unauthorized => exception
+        raise(AuthenticationError, "Error: #{exception.message}")
+      rescue Excon::Errors::Error => exception
+        # Catch all others errors. Samples:
+        #
+        # <Excon::Errors::SocketError: Connection refused - connect(2) (Errno::ECONNREFUSED)>
+        # <Excon::Errors::InternalServerError: Expected([200, 204, 404]) <=> Actual(500 InternalServerError)>
+        # <Excon::Errors::Timeout: read timeout reached>
+        # <Excon::Errors::BadGateway: Expected([200]) <=> Actual(502 Bad Gateway)>
+        raise(HTTPError, "Error: #{exception.message}")
+      end
+    rescue RequestError
       @raise_errors ? raise : false
     end
   end

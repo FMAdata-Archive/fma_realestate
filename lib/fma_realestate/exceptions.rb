@@ -1,7 +1,7 @@
 module FmaRealestate
-  class Error < StandardError; end
-  class AuthenticationError < Error; end
-  class HTTPError < Error; end
-  class BadRequest < Error; end
-  class ResourceNotFound < Error; end
+  class RequestError < StandardError; end
+  class AuthenticationError < RequestError; end
+  class HTTPError < RequestError; end
+  class BadRequest < RequestError; end
+  class ResourceNotFound < RequestError; end
 end
