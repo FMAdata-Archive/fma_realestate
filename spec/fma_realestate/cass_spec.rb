@@ -4,7 +4,7 @@ describe FmaRealestate::Cass do
   let(:authenticated_client) { described_class.new(:access_token => 'test', :raise_errors => true) }
   let(:anonymous_client) { described_class.new(:raise_errors => true) }
   
-  describe ".tiger" do
+  describe "#tiger" do
     context "with :raise_errors => false" do
       let(:authenticated_client) { described_class.new(:access_token => 'test', :raise_errors => false) }
 

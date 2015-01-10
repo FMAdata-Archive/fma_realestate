@@ -4,7 +4,7 @@ describe FmaRealestate::PublicRecord do
   let(:authenticated_client) { described_class.new(:access_token => 'test', :raise_errors => true) }
   let(:anonymous_client) { described_class.new(:raise_errors => true) }
 
-  describe ".search_by_address" do
+  describe "#search_by_address" do
     context "with :raise_errors => false" do
       let(:authenticated_client) { described_class.new(:access_token => 'test', :raise_errors => false) }
 
@@ -48,7 +48,7 @@ describe FmaRealestate::PublicRecord do
     end
   end
 
-  describe ".search_by_advanced" do
+  describe "#search_by_advanced" do
     context "with :raise_errors => false" do
       let(:authenticated_client) { described_class.new(:access_token => 'test', :raise_errors => false) }
 
