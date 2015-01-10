@@ -9,26 +9,26 @@ describe FmaRealestate::PublicRecord do
       let(:authenticated_client) { described_class.new(:access_token => 'test', :raise_errors => false) }
 
       it_behaves_like "handles error suppression" do
-        let(:action) { authenticated_client.search_by_address() }
+        let(:action) { authenticated_client.search_by_address }
       end
     end
 
     context "with :raise_errors => true" do
 
       it_behaves_like "requires valid authentication" do
-        let(:action) { anonymous_client.search_by_address() }
+        let(:action) { anonymous_client.search_by_address }
       end
 
       it_behaves_like "handles 404 response" do
-        let(:action) { authenticated_client.search_by_address() }
+        let(:action) { authenticated_client.search_by_address }
       end
 
       it_behaves_like "handles 400 response" do
-        let(:action) { authenticated_client.search_by_address() }
+        let(:action) { authenticated_client.search_by_address }
       end
 
       it_behaves_like "handles 400 response" do
-        let(:action) { authenticated_client.search_by_address() }
+        let(:action) { authenticated_client.search_by_address }
       end
     end
 
