@@ -11,5 +11,9 @@ module FmaRealestate
     def search_by_address_advanced(params={})
       get('/api/data_quick_files/search_by_address_advanced', params)
     end
+
+    def search_by_global(params={})
+      get('/api/data_quick_files/search_by_global', params)
+    end
   end
 end
