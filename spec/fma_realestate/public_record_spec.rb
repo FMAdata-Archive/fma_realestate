@@ -36,7 +36,7 @@ describe FmaRealestate::PublicRecord do
       let(:fixture) { request_fixture('search_by_address') }
 
       it "should get response" do
-        Excon.stub({ :method => :get, :path => '/api/data_quick_files/search_by_address', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
+        Excon.stub({ :method => :get, :path => '/api/public_records/search_by_address', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
         params = {:street_address => "1325 Pearl Street", :city => "Boulder", :state => "CO", :zip => "80302"}
         response = authenticated_client.search_by_address(params)
         expect(response["cass"]).to be_a Hash
@@ -80,7 +80,7 @@ describe FmaRealestate::PublicRecord do
       let(:fixture) { request_fixture('search_by_advanced') }
 
       it "should get response" do
-        Excon.stub({ :method => :get, :path => '/api/data_quick_files/search_by_advanced', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
+        Excon.stub({ :method => :get, :path => '/api/public_records/search_by_advanced', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
         params = {:street_address => "1325 Pearl Street", :city => "Boulder", :state => "CO", :zip => "80302"}
         response = authenticated_client.search_by_advanced(params)
         expect(response["count"]).to be_a Integer
@@ -125,7 +125,7 @@ describe FmaRealestate::PublicRecord do
       let(:fixture) { request_fixture('search_by_address_advanced') }
 
       it "should get response" do
-        Excon.stub({ :method => :get, :path => '/api/data_quick_files/search_by_address_advanced', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
+        Excon.stub({ :method => :get, :path => '/api/public_records/search_by_address_advanced', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
         params = {:street_address => "1325 Pearl Street", :city => "Boulder", :state => "CO", :zip => "80302"}
         response = authenticated_client.search_by_address_advanced(params)
         expect(response["cass"]).to be_a Hash
@@ -169,7 +169,7 @@ describe FmaRealestate::PublicRecord do
       let(:fixture) { request_fixture('search_by_global') }
 
       it "should get response" do
-        Excon.stub({ :method => :get, :path => '/api/data_quick_files/search_by_global', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
+        Excon.stub({ :method => :get, :path => '/api/public_records/search_by_global', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
         params = {:q => "1325 Pearl Street"}
         response = authenticated_client.search_by_global(params)
         expect(response["count"]).to be_a Integer
