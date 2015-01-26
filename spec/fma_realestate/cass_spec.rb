@@ -38,7 +38,7 @@ describe FmaRealestate::Cass do
         Excon.stub({ :method => :get, :path => '/api/cass/tiger', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
         params = {:street_address => "1325 Pearl Street", :city => "Boulder", :state => "CO", :zip => "80302"}
         response = authenticated_client.tiger(params)
-        expect(response.keys.count).to eq(28)
+        expect(response.keys.count).to eq(30)
         expect(response['return_code']).to eq('1')
         expect(response['dpv_confirmation_indicator']).to eq('Y')
       end

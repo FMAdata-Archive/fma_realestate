@@ -1,5 +1,7 @@
 {
     "address_type": "S",
+    "census_block": "3015",
+    "census_tract": "012204",
     "city": "Boulder",
     "county_name": "Boulder",
     "county_number": "013",
