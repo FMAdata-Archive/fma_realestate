@@ -51,11 +51,37 @@ config = {
 ```ruby
 # Example Cass client usage
 cass_client = Cass.new # using default config
+
+# Cass#tiger
 response_hash = cass_client.tiger(
   :street_address => "123 N Easy St.", # optional
   :city           => "Boulder",        # optional
   :state          => "CO",             # optional
   :zip            => ""                # optional
+)
+
+# Cass#address
+response_hash = cass_client.address(
+  :street_address => "123 N Easy St.", # optional
+  :city           => "Boulder",        # optional
+  :state          => "CO",             # optional
+  :zip            => ""                # optional
+)
+
+# Cass#city_zip
+response_hash = cass_client.city_zip(
+  :city           => "Boulder",        # optional
+  :state          => "CO",             # optional
+)
+
+# Cass#city_county
+response_hash = cass_client.city_county(
+  :zip            => "80302"           # optional
+)
+
+# Cass#state_county
+response_hash = cass_client.state_county(
+  :state          => "CO",             # optional
 )
 ```
 
