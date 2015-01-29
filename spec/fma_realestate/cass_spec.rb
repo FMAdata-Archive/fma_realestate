@@ -85,4 +85,44 @@ describe FmaRealestate::Cass do
       end
     end
   end
+
+  describe "#city_zip" do
+    context "with :raise_errors => false" do
+      let(:authenticated_client) { described_class.new(:access_token => 'test', :raise_errors => false) }
+
+      it_behaves_like "handles error suppression" do
+        let(:action) { authenticated_client.city_zip }
+      end
+    end
+
+    context "with :raise_errors => true" do
+
+      it_behaves_like "requires valid authentication" do
+        let(:action) { anonymous_client.city_zip }
+      end
+
+      it_behaves_like "handles 404 response" do
+        let(:action) { authenticated_client.city_zip }
+      end
+
+      it_behaves_like "handles 400 response" do
+        let(:action) { authenticated_client.city_zip }
+      end
+
+      it_behaves_like "handles 400 response" do
+        let(:action) { authenticated_client.city_zip }
+      end
+    end
+
+    context "with valid access_token" do
+      let(:fixture) { request_fixture('cass_city_zip') }
+      it "should get response" do
+        Excon.stub({ :method => :get, :path => '/api/cass/city_zip', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
+        params = {:city => "Boulder", :state => "CO"}
+        response = authenticated_client.city_zip(params)
+        expect(response.keys.count).to eq(4)
+        expect(response['return_code']).to eq('11')
+      end
+    end
+  end
 end

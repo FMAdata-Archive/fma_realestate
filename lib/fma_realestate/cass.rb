@@ -7,5 +7,9 @@ module FmaRealestate
     def address(params={})
       get('/api/cass/address', params)
     end
+
+    def city_zip(params={})
+      get('/api/cass/city_zip', params)
+    end
   end
 end
