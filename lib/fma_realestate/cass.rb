@@ -15,5 +15,9 @@ module FmaRealestate
     def city_county(params={})
       get('/api/cass/city_county', params)
     end
+
+    def state_county(params={})
+      get('/api/cass/state_county', params)
+    end
   end
 end
