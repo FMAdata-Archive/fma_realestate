@@ -125,4 +125,44 @@ describe FmaRealestate::Cass do
       end
     end
   end
+
+  describe "#city_county" do
+    context "with :raise_errors => false" do
+      let(:authenticated_client) { described_class.new(:access_token => 'test', :raise_errors => false) }
+
+      it_behaves_like "handles error suppression" do
+        let(:action) { authenticated_client.city_county }
+      end
+    end
+
+    context "with :raise_errors => true" do
+
+      it_behaves_like "requires valid authentication" do
+        let(:action) { anonymous_client.city_county }
+      end
+
+      it_behaves_like "handles 404 response" do
+        let(:action) { authenticated_client.city_county }
+      end
+
+      it_behaves_like "handles 400 response" do
+        let(:action) { authenticated_client.city_county }
+      end
+
+      it_behaves_like "handles 400 response" do
+        let(:action) { authenticated_client.city_county }
+      end
+    end
+
+    context "with valid access_token" do
+      let(:fixture) { request_fixture('cass_city_county') }
+      it "should get response" do
+        Excon.stub({ :method => :get, :path => '/api/cass/city_county', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
+        params = {:zip => "80302"}
+        response = authenticated_client.city_county(params)
+        expect(response.keys.count).to eq(5)
+        expect(response['return_code']).to eq('0')
+      end
+    end
+  end
 end
