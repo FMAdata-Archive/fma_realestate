@@ -33,7 +33,7 @@ describe FmaRealestate::Cass do
     end
 
     context "with valid access_token" do
-      let(:fixture) { request_fixture('cass_tiger') }
+      let(:fixture) { request_fixture('cass/tiger') }
       it "should get response" do
         Excon.stub({ :method => :get, :path => '/api/cass/tiger', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
         params = {:street_address => "1325 Pearl Street", :city => "Boulder", :state => "CO", :zip => "80302"}
@@ -74,7 +74,7 @@ describe FmaRealestate::Cass do
     end
 
     context "with valid access_token" do
-      let(:fixture) { request_fixture('cass_address') }
+      let(:fixture) { request_fixture('cass/address') }
       it "should get response" do
         Excon.stub({ :method => :get, :path => '/api/cass/address', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
         params = {:street_address => "1325 Pearl Street", :city => "Boulder", :state => "CO", :zip => "80302"}
@@ -115,7 +115,7 @@ describe FmaRealestate::Cass do
     end
 
     context "with valid access_token" do
-      let(:fixture) { request_fixture('cass_city_zip') }
+      let(:fixture) { request_fixture('cass/city_zip') }
       it "should get response" do
         Excon.stub({ :method => :get, :path => '/api/cass/city_zip', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
         params = {:city => "Boulder", :state => "CO"}
@@ -155,7 +155,7 @@ describe FmaRealestate::Cass do
     end
 
     context "with valid access_token" do
-      let(:fixture) { request_fixture('cass_city_county') }
+      let(:fixture) { request_fixture('cass/city_county') }
       it "should get response" do
         Excon.stub({ :method => :get, :path => '/api/cass/city_county', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
         params = {:zip => "80302"}
@@ -195,7 +195,7 @@ describe FmaRealestate::Cass do
     end
 
     context "with valid access_token" do
-      let(:fixture) { request_fixture('cass_state_county') }
+      let(:fixture) { request_fixture('cass/state_county') }
       it "should get response" do
         Excon.stub({ :method => :get, :path => '/api/cass/state_county', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
         params = {:state => "CO"}

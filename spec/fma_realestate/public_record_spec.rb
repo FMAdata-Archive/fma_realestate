@@ -33,7 +33,7 @@ describe FmaRealestate::PublicRecord do
     end
 
     context "with valid access_token" do
-      let(:fixture) { request_fixture('search_by_address') }
+      let(:fixture) { request_fixture('public_record/search_by_address') }
 
       it "should get response" do
         Excon.stub({ :method => :get, :path => '/api/public_records/search_by_address', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
@@ -77,7 +77,7 @@ describe FmaRealestate::PublicRecord do
     end
 
     context "with valid access_token" do
-      let(:fixture) { request_fixture('search_by_advanced') }
+      let(:fixture) { request_fixture('public_record/search_by_advanced') }
 
       it "should get response" do
         Excon.stub({ :method => :get, :path => '/api/public_records/search_by_advanced', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
@@ -122,7 +122,7 @@ describe FmaRealestate::PublicRecord do
     end
 
     context "with valid access_token" do
-      let(:fixture) { request_fixture('search_by_address_advanced') }
+      let(:fixture) { request_fixture('public_record/search_by_address_advanced') }
 
       it "should get response" do
         Excon.stub({ :method => :get, :path => '/api/public_records/search_by_address_advanced', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
@@ -166,7 +166,7 @@ describe FmaRealestate::PublicRecord do
     end
 
     context "with valid access_token" do
-      let(:fixture) { request_fixture('search_by_global') }
+      let(:fixture) { request_fixture('public_record/search_by_global') }
 
       it "should get response" do
         Excon.stub({ :method => :get, :path => '/api/public_records/search_by_global', :headers => { 'Authorization' => "Token token=test" }}, {:status => 200, :body => fixture })
