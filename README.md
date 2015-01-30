@@ -50,10 +50,10 @@ config = {
 
 ```ruby
 # Example Cass client usage
-cass_client = Cass.new # using default config
+client = Cass.new # using default config
 
 # Cass#tiger
-response_hash = cass_client.tiger(
+response_hash = client.tiger(
   :street_address => "123 N Easy St.", # optional
   :city           => "Boulder",        # optional
   :state          => "CO",             # optional
@@ -61,7 +61,7 @@ response_hash = cass_client.tiger(
 )
 
 # Cass#address
-response_hash = cass_client.address(
+response_hash = client.address(
   :street_address => "123 N Easy St.", # optional
   :city           => "Boulder",        # optional
   :state          => "CO",             # optional
@@ -69,28 +69,28 @@ response_hash = cass_client.address(
 )
 
 # Cass#city_zip
-response_hash = cass_client.city_zip(
+response_hash = client.city_zip(
   :city           => "Boulder",        # optional
   :state          => "CO",             # optional
 )
 
 # Cass#city_county
-response_hash = cass_client.city_county(
+response_hash = client.city_county(
   :zip            => "80302"           # optional
 )
 
 # Cass#state_county
-response_hash = cass_client.state_county(
+response_hash = client.state_county(
   :state          => "CO",             # optional
 )
 ```
 
 ```ruby
 # Example PublicRecord client usage
-public_record_client = RealEstate.new # using default config
+client = PublicRecord.new # using default config
 
 # PublicRecord#search_by_address
-response_hash = public_record_client.search_by_address(
+response_hash = client.search_by_address(
   :street_address => "123 N Easy St.", # optional
   :city           => "Boulder",        # optional
   :state          => "CO",             # optional
@@ -98,7 +98,7 @@ response_hash = public_record_client.search_by_address(
 )
 
 # PublicRecord#search_by_advanced
-response_hash = public_record_client.search_by_advanced(
+response_hash = client.search_by_advanced(
   :legal_description => ""                # optional
   :owner_name        => "Jon Doe"         # optional
   :street_address    => "123 N Easy St.", # optional
@@ -109,7 +109,7 @@ response_hash = public_record_client.search_by_advanced(
 )
 
 # PublicRecord#search_by_address_advanced
-response_hash = public_record_client.search_by_address_advanced(
+response_hash = client.search_by_address_advanced(
   :legal_description => ""                # optional
   :owner_name        => "Jon Doe"         # optional
   :street_address    => "123 N Easy St.", # optional
@@ -120,8 +120,18 @@ response_hash = public_record_client.search_by_address_advanced(
 )
 
 # PublicRecord#search_by_global
-response_hash = public_record_client.search_by_address_advanced(
+response_hash = client.search_by_address_advanced(
   :q => "123 N Easy St." # required
+)
+```
+
+```ruby
+# Example PublicRecordSale client usage
+client = PublicRecordSale.new # using default config
+
+# PublicRecord#search_by_cass_search_key
+response_hash = client.search_by_cass_search_key(
+  :street_address => "90803513805UNIT405", # optional
 )
 ```
 
