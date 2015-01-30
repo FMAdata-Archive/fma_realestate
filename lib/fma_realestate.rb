@@ -5,6 +5,7 @@ require "fma_realestate/version"
 require "fma_realestate/client"
 require "fma_realestate/cass"
 require "fma_realestate/public_record"
+require "fma_realestate/public_record_sale"
 require "fma_realestate/exceptions"
 
 module FmaRealestate
