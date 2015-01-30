@@ -25,17 +25,27 @@ Or install it yourself as:
 ```ruby
 # Global config
 # if using rails, create initializer: /config/initializers/fma_realestate.rb
+# Global config is optional
 FmaRealestate.configure do |config|
-  config.access_token = 'your_access_token'
+  config.access_token  = 'your_access_token' # string
+  config.raise_errors  = true_or_false       # boolean
+  config.retries       = number_of_retries   # integer
+  config.read_timeout  = number_of_seconds   # integer
+  config.write_timeout = number_of_seconds   # integer
 end
 
 # or
 
-FmaRealestate.access_token = 'your_access_token'
+FmaRealestate.access_token  = 'your_access_token'
+FmaRealestate.raise_errors  = true_or_false
+FmaRealestate.retries       = number_of_retries
+FmaRealestate.read_timeout  = number_of_seconds
+FmaRealestate.write_timeout = number_of_seconds
 ```
 
 ```ruby
 # Sample client configuration, shown with default values:
+# Client config is optional
 config = {
   :access_token => FmaRealestate.access_token,  # initialize the client with an access token
   :raise_errors => false,                       # choose between returning false or raising a proper exception when API calls fails

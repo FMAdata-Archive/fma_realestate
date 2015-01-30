@@ -16,7 +16,7 @@ module FmaRealestate
   end
 
   class << self
-    attr_accessor :access_token
+    attr_accessor :access_token, :raise_errors, :retries, :read_timeout, :write_timeout, :persistent
   end
 
 end

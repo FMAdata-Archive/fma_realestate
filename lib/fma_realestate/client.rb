@@ -3,11 +3,11 @@ module FmaRealestate
     BASE_URI = 'http://realestate.firstmoversadvantage.com'.freeze
 
     def initialize(config = {})
-      @access_token  = config[:access_token] || FmaRealestate.access_token
-      @raise_errors  = config[:raise_errors] || false
-      @retries       = config[:retries] || 0
-      @read_timeout  = config[:read_timeout] || 10
-      @write_timeout = config[:write_timeout] || 10
+      @access_token  = config[:access_token]  || FmaRealestate.access_token
+      @raise_errors  = config[:raise_errors]  || FmaRealestate.raise_errors  || false
+      @retries       = config[:retries]       || FmaRealestate.retries       || 0
+      @read_timeout  = config[:read_timeout]  || FmaRealestate.read_timeout  || 10
+      @write_timeout = config[:write_timeout] || FmaRealestate.write_timeout || 10
       @connection    = Excon.new(BASE_URI, :persistent => config[:persistent] || false)
     end
 
