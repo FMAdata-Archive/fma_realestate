@@ -139,7 +139,7 @@ response_hash = client.search_by_address_advanced(
 # Example PublicRecordSale client usage
 client = PublicRecordSale.new # using default config
 
-# PublicRecord#search_by_cass_search_key
+# PublicRecordSale#search_by_cass_search_key
 response_hash = client.search_by_cass_search_key(
   :street_address => "90803513805UNIT405", # optional
 )
