@@ -141,7 +141,7 @@ client = PublicRecordSale.new # using default config
 
 # PublicRecordSale#search_by_cass_search_key
 response_hash = client.search_by_cass_search_key(
-  :street_address => "90803513805UNIT405", # optional
+  :cass_search_key => "90803513805UNIT405", # optional
 )
 ```
 
